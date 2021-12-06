@@ -284,3 +284,9 @@ body {
 }
 .c-header__notification-icon {}
 .c-header__notification-text {}
+
+.intro-image {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
