@@ -119,7 +119,7 @@ body {
 }
 
 .search-results__block {
-  width: 200px;
+  width: auto;
   min-height: 50px;
   border: 1px solid grey;
   border-radius: 3px;
