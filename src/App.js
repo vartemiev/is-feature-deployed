@@ -73,7 +73,7 @@ function App() {
 
             return result.map(req => (
                 <div key={req.id}>
-                    {req.deployedOn.includes(serverId) && req.status === 'merged' ? <span>&#9989;</span> : <span>&#10060;</span>} <span style={{ fontSize: 11 }}>{req.name}</span> <a href={req.link}>{Icons.link}</a>
+                    {req.deployedOn.includes(serverId) && req.status === 'merged' ? <span>&#9989;</span> : <span>&#10060;</span>} <span >{req.link}</span> {Icons.link}
                 </div>
             ))
         },
@@ -108,22 +108,30 @@ function App() {
             )}
 
             {currentTask && !isLoading && (
-                <>
+                <div >
                     <div className="search-results">
                         <div className="search-results__block">
-                            <div>{Icons.ticket} #{currentTask.id}</div>
-                            <h5>{currentTask.title}</h5>
-                            <div>{Statuses[currentTask.status]}</div>
-                        </div>
-                        {servers.map((server) => (
-                            <div className="search-results__block" key={server.id}>
-                                <div>{Icons.server} {server.name}</div>
-                                <div>{getMergeRequest(server.id)}</div>
-                                <div>{isDeployed(currentTask.id, server.id) ? 'deployed' : 'not deployed'}</div>
+                            <div className="c-card c-card--task">
+                                <div className="c-card__header">
+                                    <span className="c-card__icon">{Icons.ticket}</span> #{currentTask.id}
+                                </div>
+                                <header className="c-card__title">{currentTask.title}</header>
+                                <div className="c-card__status c-card__status--in-progress">{Statuses[currentTask.status]}</div>
                             </div>
-                        ))}
+                        </div>
+                        <div className="search-results__block">
+                            {servers.map((server) => (
+                                <div className="c-card c-card--merge" key={server.id}>
+                                    <div className="c-card__header">
+                                        <span className="c-card__icon">{Icons.server}</span> {server.name}
+                                        <div className="c-card__deploy-status c-card__deploy-status--deployed">{isDeployed(currentTask.id, server.id) ? 'deployed' : 'not deployed'}</div>
+                                    </div>
+                                    <header className="c-card__title">{getMergeRequest(server.id)}</header>
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                </>
+                </div>
             )}
         </div>
     );
