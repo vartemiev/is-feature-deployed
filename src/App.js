@@ -23,11 +23,15 @@ function App() {
                 .map(link => link.to.mergeRequest);
 
             const serverLinks = links
-                .filter(link => mrsForTask.includes(link.from.mergeRequest) && link.to.server === serverId);
+                .filter(link =>
+                    mrsForTask.includes(link.from.mergeRequest) &&
+                    mergeRequests.find(req => req.id === link.from.mergeRequest).status === 'merged' &&
+                    link.to.server === serverId
+                );
 
             return serverLinks.length === mrsForTask.length;
         },
-        [links]
+        [links, mergeRequests]
     );
 
     const onEnterTask = useCallback((e) => setTaskId(e.target.value), []);
@@ -69,7 +73,7 @@ function App() {
 
             return result.map(req => (
                 <div key={req.id}>
-                    {req.deployedOn.includes(serverId) && req.status === 'merged' ? <span>&#9989;</span> : <span>&#10060;</span>} <span style={{ fontSize: 11 }}>{req.link}</span> {Icons.link}
+                    {req.deployedOn.includes(serverId) && req.status === 'merged' ? <span>&#9989;</span> : <span>&#10060;</span>} <span style={{ fontSize: 11 }}>{req.name}</span> <a href={req.link}>{Icons.link}</a>
                 </div>
             ))
         },

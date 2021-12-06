@@ -26,16 +26,19 @@ export const data = {
     mergeRequests: [
         {
             id: '177',
+            name: 'Improvement #83613 Improve header',
             link: 'https://gitlab.xiag.ch/hogashop/ui-orders-archive/-/merge_requests/177',
             status: 'merged',
         },
         {
             id: '178',
+            name: 'Improvement #83613 Create new elements for header search',
             link: 'https://gitlab.xiag.ch/hogashop/ui-orders-archive/-/merge_requests/178',
             status: 'review',
         },
         {
             id: '179',
+            name: 'Fix #83612 Update imports behaviour',
             link: 'https://gitlab.xiag.ch/hogashop/ui-orders-archive/-/merge_requests/179',
             status: 'merged',
         },
