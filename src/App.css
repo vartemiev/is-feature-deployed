@@ -12,10 +12,13 @@
 
   --color-red: #EA3D2F;
   --color-green: #2FA84F;
+  --color-main: #3E4345;
 }
 body {
   background: var(--bg-color);
   font-family: var(--main-font-faminily);
+  padding: 0;
+  margin: 0;
 }
 
 .App {
@@ -39,7 +42,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -60,17 +62,16 @@ body {
 
 .app {
   width: 100%;
-  height: 300px;
   border-radius: 3px;
+  padding-bottom: 200px;
 
   display: grid;
   align-items: flex-start;
   grid-template-rows: auto auto;
-  justify-content: center;
 }
 
 .search-container {
-  margin-bottom: 80px;
+  margin: 0 auto 80px auto;
   display: grid;
   grid-gap: 6px;
   justify-content: center;
@@ -124,6 +125,7 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   max-width: 1300px;
+  margin: 0 auto;
 }
 
 .search-results__block {
@@ -158,6 +160,21 @@ body {
   flex-direction: column;
   gap: 8px;
 }
+.c-card:hover {
+  cursor: pointer;
+  background: rgba(255,255,255,.99);
+}
+
+.c-card a {
+  text-decoration: none;
+}
+.c-card a:hover {
+  text-decoration: underline;
+}
+
+.c-card a:hover {
+
+}
 
 .c-card.c-card--task {
 
@@ -172,6 +189,19 @@ body {
   align-items: center;
   gap: 4px;
 }
+.c-card__body {
+  padding-top: 24px;
+}
+
+.c-card__link {
+  color: var(--color-main);
+}
+
+.c-card__toggle-chevron {
+  margin-left: auto;
+
+}
+
 .c-card__icon {
   color: var(--color-gray-40);
 }
@@ -207,3 +237,50 @@ body {
   border-radius: 20px;
   font-size: 14px;
 }
+
+
+.c-header {
+  height: 64px;
+  width: 100%;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,.16), 0 1px 2px rgba(0,0,0,.24);
+  display: flex;
+  align-items: center;
+  padding: 0;
+  gap: 60px;
+
+}
+.c-header__logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 24px;
+}
+.c-header__img {
+  height: 50px;
+}
+.c-header__logo-text {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.c-header__user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-right: 24px;
+}
+.c-header__user-img {
+  height: 40px;
+}
+.c-header__user-text {}
+
+
+.c-header__notification {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-left: auto;
+}
+.c-header__notification-icon {}
+.c-header__notification-text {}

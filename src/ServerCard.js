@@ -16,12 +16,12 @@ export const ServerCard = props => {
 
     return (
         <div className="c-card c-card--merge">
-            <div className="c-card__header">
+            <div className="c-card__header" onClick={() => setIsHidden(!isHidden)}>
                 <span className="c-card__icon">{Icons.server}</span> {server.name}
                 <div className={deployedClasses}>{isTaskDeployed ? 'Deployed' : 'Not deployed'}</div>
-                <span onClick={() => setIsHidden(!isHidden)}>{isHidden ? Icons.arrowRight : Icons.arrowDown}</span>
+                <span className="c-card__toggle-chevron" >{isHidden ? Icons.arrowRight : Icons.arrowDown}</span>
             </div>
-            {!isHidden && <header className="c-card__title">{getMergeRequest(server.id)}</header>}
+            {!isHidden && <header className="c-card__body">{getMergeRequest(server.id)}</header>}
         </div>
     )
 }
