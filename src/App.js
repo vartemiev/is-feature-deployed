@@ -1,7 +1,7 @@
 import './App.css';
 import { useState, useCallback } from 'react';
 import { Icons } from './icons';
-import { data } from './fixture/task';
+import { data as fixture } from './fixture/task';
 
 import { ServerCard } from './ServerCard';
 
@@ -39,18 +39,20 @@ function App() {
     const onEnterTask = useCallback((e) => setTaskId(e.target.value), []);
 
     const onSearchTask = useCallback(
-        () => {
+        async () => {
             setIsLoading(true);
-            setTimeout(
-                () => {
-                    setAppData(data);
-                    setIsLoading(false);
-                    setCurrentTask(data.tasks.find(t => {
-                        return t.id === taskId
-                    }));
-                },
-                2000
-            );
+            const response = await fetch(`http://localhost:3001/task/${taskId}`);
+            const data = await response.json();
+
+            const payload = data.length ?
+                data :
+                fixture;
+
+            setAppData(payload);
+            setIsLoading(false);
+            setCurrentTask(data.tasks.find(t => {
+                return t.id === taskId
+            }));
         },
         [taskId]
     );
@@ -124,10 +126,6 @@ function App() {
             </div>
 
             {isLoading && <div className="message message--loading">Please wait...</div>}
-
-            {appData && !currentTask && !isLoading && (
-                <div className="message message--error">No information found. Please check if task exists.</div>
-            )}
 
             {currentTask && !isLoading && (
                 <div className="search-results">
