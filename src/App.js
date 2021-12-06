@@ -93,8 +93,8 @@ function App() {
         <div className="app">
             <header className="c-header">
                 <div className="c-header__logo">
-                    <img className="c-header__img" src="deplanda.png" alt=""/>
-                    <span className="c-header__logo-text">DEPLOMON</span>
+                    <img className="c-header__img" src="task-travolta.png" alt=""/>
+                    <span className="c-header__logo-text">TASK TRAVOLTA</span>
                 </div>
 
 
