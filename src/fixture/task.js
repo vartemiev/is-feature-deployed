@@ -3,11 +3,19 @@ export const data = {
         {
             id: '83612',
             title: 'Refresh the header design and add supplier section',
+            executor: {
+                name: 'Anton Leonov',
+                avatar: './avatar/anton.png'
+            },
             status: 'inProgress',
         },
         {
             id: '83613',
             title: 'Outlisted products loose selling unit',
+            executor: {
+                name: 'Stas Gridasov',
+                avatar: './avatar/stas.png'
+            },
             status: 'testing',
         }
     ],

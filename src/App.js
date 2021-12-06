@@ -118,12 +118,20 @@ function App() {
                                     <span className="c-card__icon">{Icons.ticket}</span> #{currentTask.id}
                                 </div>
                                 <header className="c-card__title">{currentTask.title}</header>
+                                <div className="c-card__executor">
+                                    <div>
+                                        <img style={{ borderRadius: 50, height: 20 }} src={currentTask.executor.avatar} />
+                                    </div>
+                                    <div>{currentTask.executor.name}</div>
+                                </div>
                                 <div className="c-card__status c-card__status--in-progress">{Statuses[currentTask.status]}</div>
                             </div>
                         </div>
                         <div className="search-results__block">
                             {servers.map((server) => (
                                 <ServerCard
+                                    key={server.id}
+
                                     server={server}
                                     currentTask={currentTask}
                                     getMergeRequest={getMergeRequest}

@@ -178,6 +178,11 @@ body {
 .c-card__title {
   font-size: 20px;
 }
+.c-card__executor {
+  display: flex;
+  align-items: center;
+  gap: 10px
+}
 .c-card__status {}
 .c-card__status--in-progress {
   color: var(--color-green);
