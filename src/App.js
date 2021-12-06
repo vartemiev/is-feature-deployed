@@ -53,6 +53,9 @@ function App() {
             <div className="search-container">
                 <div className="search-container__title">Check the task deployment status</div>
                 <div className="search-container__search">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M13.5 7C15.2239 7 16.8772 7.68482 18.0962 8.90381C19.3152 10.1228 20 11.7761 20 13.5C20 15.11 19.41 16.59 18.44 17.73L18.71 18H19.5L24.5 23L23 24.5L18 19.5V18.71L17.73 18.44C16.59 19.41 15.11 20 13.5 20C11.7761 20 10.1228 19.3152 8.90381 18.0962C7.68482 16.8772 7 15.2239 7 13.5C7 11.7761 7.68482 10.1228 8.90381 8.90381C10.1228 7.68482 11.7761 7 13.5 7V7ZM13.5 9C11 9 9 11 9 13.5C9 16 11 18 13.5 18C16 18 18 16 18 13.5C18 11 16 9 13.5 9Z" fill="#78909C"/>
+                    </svg>
                     <input
                         type="text"
                         className="search-container__input"
@@ -64,10 +67,10 @@ function App() {
                 </div>
             </div>
 
-            {isLoading && <div>Please wait</div>}
+            {isLoading && <div className="message message--loading">Please wait...</div>}
 
             {appData && !currentTask && !isLoading && (
-                <div>No information found. Please check if task exists</div>
+                <div className="message message--error">No information found. Please check if task exists.</div>
             )}
 
             {currentTask && !isLoading && (

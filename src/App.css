@@ -1,3 +1,17 @@
+:root {
+  --bg-color: #F1F3F4;
+  --main-font-faminily: 'Roboto', sans-serif;
+
+  --page-width: 1300px;
+
+  --color-bluegray: #78909C;
+  --color-gray-50: #A6ADAF;
+}
+body {
+  background: var(--bg-color);
+  font-family: var(--main-font-faminily);
+}
+
 .App {
   text-align: center;
 }
@@ -39,14 +53,13 @@
 
 
 .app {
-  border: 1px solid grey;
   width: 100%;
   height: 300px;
   border-radius: 3px;
 
   display: grid;
   align-items: flex-start;
-  grid-template-rows: 100px auto;
+  grid-template-rows: auto auto;
   justify-content: center;
 }
 
@@ -55,20 +68,47 @@
   display: grid;
   grid-gap: 6px;
   justify-content: center;
+  max-width: var(--page-width);
+  width: var(--page-width);
+}
+
+.search-container__title {
+  font-size: 34px;
+  padding-top: 100px;
+  margin-bottom: 32px;
+  text-align: center;
 }
 
 .search-container__search {
   display: flex;
-  gap: 4px
+  gap: 16px;
+  position: relative;
+}
+
+.search-container__search svg {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) translateX(8px);
 }
 
 .search-container__input {
-  outline: none;
-  padding: 3px 7px;
+  border: none;
+  border-radius: 30px;
+  height: 48px;
+  padding: 0 24px 0 40px;
+  font-size: 20px;
+  width: 920px;
 }
 
 .search-container__btn {
-  padding: 3px 7px;
+  border: none;
+  border-radius: 30px;
+  height: 48px;
+  padding: 0 24px;
+  font-size: 20px;
+  background: var(--color-bluegray);
+  color: white;
 }
 
 .search-results {
@@ -86,4 +126,20 @@
   padding: 5px;
 
   display: grid;
+}
+
+
+.message {
+  width: var(--page-width);
+  text-align: center;
+  font-size: 18px;
+  color: var(--color-gray-50);
+}
+
+.message.message--error {
+
+}
+
+.message.message--message {
+
 }
