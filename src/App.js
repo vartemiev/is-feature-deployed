@@ -75,7 +75,7 @@ function App() {
 
             return result.map(req => (
                 <div key={req.id}>
-                    {req.deployedOn.includes(serverId) && req.status === 'merged' ? <span>&#9989;</span> : <span>&#10060;</span>} <span >{req.link}</span> {Icons.link}
+                    {req.deployedOn.includes(serverId) && req.status === 'merged' ? <span>&#9989;</span> : <span>&#10060;</span>} <span >{req.name}</span> <a href={req.link}>{Icons.link}</a>
                 </div>
             ))
         },

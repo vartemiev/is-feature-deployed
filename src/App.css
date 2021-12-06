@@ -10,6 +10,7 @@
 
 
 
+  --color-red: #EA3D2F;
   --color-green: #2FA84F;
 }
 body {
@@ -188,6 +189,14 @@ body {
 
 .c-card__deploy-status--deployed {
   background: var(--color-green);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.c-card__deploy-status--not-deployed {
+  background: var(--color-red);
   color: white;
   padding: 4px 8px;
   border-radius: 20px;
