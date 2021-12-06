@@ -44,18 +44,16 @@ function App() {
             setIsRequested(true);
             setIsLoading(true);
 
-            const response = await fetch(`http://localhost:3001/task/${taskId}`);
-            const data = await response.json();
-
-            const payload = data.length ?
-                data :
-                fixture;
-
-            setAppData(payload);
-            setIsLoading(false);
-            setCurrentTask(data.tasks.find(t => {
-                return t.id === taskId
-            }));
+            setTimeout(
+                () => {
+                    setAppData(fixture);
+                    setIsLoading(false);
+                    setCurrentTask(fixture.tasks.find(t => {
+                        return t.id === taskId
+                    }));
+                },
+                1500
+            )
         },
         [taskId]
     );
@@ -138,12 +136,6 @@ function App() {
                                     <span className="c-card__icon">{Icons.ticket}</span> #{currentTask.id}
                                 </div>
                                 <header className="c-card__title">{currentTask.title}</header>
-                                <div className="c-card__executor">
-                                    <div>
-                                        <img style={{ borderRadius: 50, height: 20 }} src={currentTask.executor.avatar} />
-                                    </div>
-                                    <div>{currentTask.executor.name}</div>
-                                </div>
                                 <div className="c-card__status c-card__status--in-progress">{Statuses[currentTask.status]}</div>
                             </div>
                         </div>
