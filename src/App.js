@@ -3,6 +3,8 @@ import { useState, useCallback } from 'react';
 import { Icons } from './icons';
 import { data } from './fixture/task';
 
+import { ServerCard } from './ServerCard';
+
 const Statuses = {
     inProgress: 'In progress',
     testing: 'Testing',
@@ -121,13 +123,12 @@ function App() {
                         </div>
                         <div className="search-results__block">
                             {servers.map((server) => (
-                                <div className="c-card c-card--merge" key={server.id}>
-                                    <div className="c-card__header">
-                                        <span className="c-card__icon">{Icons.server}</span> {server.name}
-                                        <div className="c-card__deploy-status c-card__deploy-status--deployed">{isDeployed(currentTask.id, server.id) ? 'deployed' : 'not deployed'}</div>
-                                    </div>
-                                    <header className="c-card__title">{getMergeRequest(server.id)}</header>
-                                </div>
+                                <ServerCard
+                                    server={server}
+                                    currentTask={currentTask}
+                                    getMergeRequest={getMergeRequest}
+                                    isDeployed={isDeployed}
+                                />
                             ))}
                         </div>
                     </div>
