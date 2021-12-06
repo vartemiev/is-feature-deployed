@@ -257,11 +257,11 @@ body {
   margin-left: 24px;
 }
 .c-header__img {
-  height: 50px;
+  height: 42px;
 }
 .c-header__logo-text {
   font-weight: bold;
-  font-size: 24px;
+  font-size: 18px;
 }
 
 .c-header__user {
