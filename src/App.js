@@ -14,17 +14,20 @@ function App() {
     const [taskId, setTaskId] = useState(null);
     const [currentTask, setCurrentTask] = useState(null);
 
-    const { tasks, servers, links } = appData;
+    const { tasks, mergeRequests, servers, links } = appData;
 
     const isDeployed = useCallback(
         (taskId, serverId) => {
-            const taskLinks = links.filter(link => link.from.task === taskId);
+            const mrsForTask = links
+                .filter(link => link.from?.task === taskId)
+                .map(link => link.to.mergeRequest);
 
-            if (taskLinks.length) {
-                return taskLinks.find(link => link.to.server === serverId) !== undefined
-            }
+            const serverLinks = links
+                .filter(link => mrsForTask.includes(link.from.mergeRequest) && link.to.server === serverId);
+
+            return serverLinks.length === mrsForTask.length;
         },
-        [tasks, servers, links]
+        [links]
     );
 
     const onEnterTask = useCallback((e) => setTaskId(e.target.value), []);
@@ -44,6 +47,33 @@ function App() {
             );
         },
         [taskId]
+    );
+
+    const getMergeRequest = useCallback(
+        (serverId) => {
+            const mrsForTask = links
+                .filter(link => link.from?.task === currentTask.id)
+                .map(link => link.to.mergeRequest);
+
+            const result = mergeRequests
+                .filter(req => mrsForTask.includes(req.id))
+                .map(req => ({
+                    ...req,
+                    deployedOn: links.reduce(
+                        (acc, link) => (link.from.mergeRequest === req.id) ?
+                            [...acc, link.to.server] :
+                            acc,
+                        []
+                    )
+                }));
+
+            return result.map(req => (
+                <div key={req.id}>
+                    {req.deployedOn.includes(serverId) && req.status === 'merged' ? <span>&#9989;</span> : <span>&#10060;</span>} <span style={{ fontSize: 11 }}>{req.link}</span> {Icons.link}
+                </div>
+            ))
+        },
+        [currentTask, tasks, links, mergeRequests]
     );
 
     console.log(taskId);
@@ -81,7 +111,7 @@ function App() {
                         {servers.map((server) => (
                             <div className="search-results__block" key={server.id}>
                                 <div>{Icons.server} {server.name}</div>
-                                <div>{server.link}</div>
+                                <div>{getMergeRequest(server.id)}</div>
                                 <div>{isDeployed(currentTask.id, server.id) ? 'deployed' : 'not deployed'}</div>
                             </div>
                         ))}
